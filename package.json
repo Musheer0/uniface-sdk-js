@@ -1,0 +1,60 @@
+{
+  "name": "@blurfield/js",
+  "version": "1.0.0",
+  "description": "Official JavaScript/TypeScript SDK for the Blurfield face-blurring API (photos, videos, timestamped video segments).",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node scripts/postbuild.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test test/client.test.js",
+    "pretest": "npm run build",
+    "sync-api": "node scripts/sync-apis.js",
+    "gen:client": "npm run sync-api",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "blurfield",
+    "blur",
+    "face-blur",
+    "privacy",
+    "photo",
+    "video",
+    "sdk",
+    "typescript",
+    "openapi"
+  ],
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "dotenv": "^18.0.7",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
